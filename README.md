@@ -18,3 +18,8 @@ L'archive comprends:
 - un répertoire images_digits contenant les tracés, dans le même ordre que le fichier d'apprentissage
 ```
 
+
+
+#### Vidéo explication du KPPV :
+
+https://www.youtube.com/watch?v=eZEeTkxmKlM&ab_channel=C%C3%A9dricGERLAND
