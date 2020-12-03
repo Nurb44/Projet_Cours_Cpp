@@ -1,8 +1,8 @@
 #ifndef DATA_H
 #define DATA_H
 
-#include "Sample.h"
 #include <iostream>
+#include "Sample.h"
 
 class Data
 {
@@ -13,7 +13,7 @@ public:
     void load();
     void aspire_les_donnees(std::string filepath);
     int getNbSamples();
-    char *getString();
+    char* getString();
 
 private:
     Sample *m_data;

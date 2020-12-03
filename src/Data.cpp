@@ -1,5 +1,4 @@
 #include "../inc/Data.h"
-#include <iostream>
 
 Data::Data()
 {
@@ -32,7 +31,7 @@ int Data::getNbSamples()
     return m_nb_samples;
 }
 
-char *Data::getString()
+char* Data::getString()
 {
     // TODO : Give str representation
 }
