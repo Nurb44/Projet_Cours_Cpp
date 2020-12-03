@@ -1,28 +1,36 @@
-#include "../inc/Data.h"Data::Data(){
-Data::Data(){
+#include "../inc/Data.h"
+
+Data::Data()
+{
     // TODO : Constructor method
 }
 
-Data::~Data(){
+Data::~Data()
+{
     // TODO : Destructor method
 }
 
-Data::add(){
+Data::add()
+{
     // TODO : Add sample into data array
 }
 
-Data::aspire_les_donnees(){
+Data::aspire_les_donnees()
+{
     // TODO : Function to define
 }
 
-Data::load(){
+Data::load()
+{
     // TODO : Function to define
 }
 
-int Data::nbSamples(){
+int Data::nbSamples()
+{
     // TODO : Returns _nb_samples
 }
 
-char* Data::toString(){
+char* Data::toString()
+{
     // TODO : Give str representation
 }
