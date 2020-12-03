@@ -1,8 +1,10 @@
 #include "../inc/Data.h"
+#include <iostream>
 
 Data::Data()
 {
-    // TODO : Constructor method
+    m_nb_features = 0;
+    m_nb_samples = 0;
 }
 
 Data::~Data()
@@ -10,27 +12,27 @@ Data::~Data()
     // TODO : Destructor method
 }
 
-Data::add()
+void Data::add()
 {
     // TODO : Add sample into data array
 }
 
-Data::aspire_les_donnees()
+void Data::aspire_les_donnees(std::string filepath)
+{
+    // TODO : Import data from file
+}
+
+void Data::load()
 {
     // TODO : Function to define
 }
 
-Data::load()
+int Data::getNbSamples()
 {
-    // TODO : Function to define
+    return m_nb_samples;
 }
 
-int Data::nbSamples()
-{
-    // TODO : Returns _nb_samples
-}
-
-char* Data::toString()
+char *Data::getString()
 {
     // TODO : Give str representation
 }
