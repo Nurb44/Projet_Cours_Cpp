@@ -1,20 +1,24 @@
 #ifndef FEATUREVECTOR_H
 #define FEATUREVECTOR_H
 
+#include <iostream>
 #include <vector>
+#include <math.h>
+
+using namespace std;
 
 class FeatureVector
 {
 public:
-    FeatureVector();
+    FeatureVector(std::string filepath);
     ~FeatureVector();
-    int getNbFeature();
-    double getFeature(unsigned int index);
-    std::vector<double*> getFeatureVector();
+    double getNorme();
+    int getSize();
+    double& operator [](int i) {return m_vector[i];}
 
 private:
-    int m_nbFeature;
-    std::vector<double*> m_feature;
+    double m_norme;
+    std::vector<double> m_vector;
 };
 
 #endif
