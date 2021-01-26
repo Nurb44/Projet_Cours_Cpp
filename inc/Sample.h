@@ -6,14 +6,15 @@
 class Sample
 {
 public:
-    Sample(int tag);
+    Sample(std::string features);
     ~Sample();
     int getTag();
-    FeatureVector getFeatureVector();
+    FeatureVector getFeature();
+    double& operator [](int i) {return (*m_features)[i];}
 
 private:
     int m_tag;
-    FeatureVector m_feature;
+    FeatureVector *m_features;
 };
 
 #endif
