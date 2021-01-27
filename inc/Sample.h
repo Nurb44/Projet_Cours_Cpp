@@ -12,6 +12,7 @@ public:
     int getTag();
     FeatureVector getFeature();
     double& operator [](int i) {return (*m_features)[i];}
+    std::string getString();
 
 private:
     int m_tag;
