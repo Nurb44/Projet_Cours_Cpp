@@ -3,7 +3,7 @@
 Sample::Sample(std::string sample)
 {
     // Tag is the first character
-    m_tag = sample.at(0);
+    m_tag = stoi(&sample.at(0));
 
     // We can delete first and second and send it to feature vector
     sample.erase(0,2);

@@ -2,6 +2,7 @@
 #define SAMPLE_H
 
 #include "FeatureVector.h"
+#include <iostream>
 
 class Sample
 {
