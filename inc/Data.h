@@ -3,20 +3,22 @@
 
 #include <iostream>
 #include "Sample.h"
+#include <fstream>
 
 class Data
 {
 public:
     Data();
     ~Data();
-    void add();
-    void load();
     void aspire_les_donnees(std::string filepath);
     int getNbSamples();
-    char* getString();
+    string getString();
+    void scale();
+    Sample*& operator [](int i) {return (m_data)[i];}
+
 
 private:
-    Sample *m_data;
+    std::vector<Sample*> m_data;
     int m_nb_features;
     int m_nb_samples;
 };
