@@ -54,8 +54,10 @@ string Data::getString()
     str += "Nombre de Features/Sample : " + to_string(m_nb_features) + "\n";
 
     str += "Liste des samples : \n";
+    int i = 0;
     for(const auto& value: m_data) {
-        str += "\t" + value->getString() + "\n";
+        i ++;
+        str += "\t Id = " + to_string(i) + "; " + value->getString() + "\n";
     }
     return str;
 }
