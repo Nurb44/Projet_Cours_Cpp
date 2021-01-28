@@ -14,22 +14,24 @@ Data::~Data()
 
 }
 
-void Data::aspire_les_donnees(std::string filepath)
+void Data::aspire_les_donnees(std::string filepath, int max_line)
 {
-    cout << filepath << endl;
     ifstream myfile (filepath);
 
     string line;
-
     std::getline(myfile, line);
-    m_nb_samples = stoi(line);
+    if(max_line != -1)
+        m_nb_samples = max_line;
+    else
+        m_nb_samples = stoi(line);
 
     std::getline(myfile, line);
     m_nb_features = stoi(line);
 
-    while (getline(myfile, line))
+    while (getline(myfile, line) and max_line != 0)
     {
         m_data.push_back(new Sample(line));
+        max_line--;
     }
 
     myfile.close();

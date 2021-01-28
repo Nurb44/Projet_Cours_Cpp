@@ -10,7 +10,7 @@ class Data
 public:
     Data();
     ~Data();
-    void aspire_les_donnees(std::string filepath);
+    void aspire_les_donnees(std::string filepath, int max_line = -1);
     int getNbSamples();
     string getString();
     void scale();
