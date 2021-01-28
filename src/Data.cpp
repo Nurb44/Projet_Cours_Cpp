@@ -53,7 +53,7 @@ string Data::getString()
 
     str += "Liste des samples : \n";
     for(const auto& value: m_data) {
-        str += "\t" + value->toString() + "\n";
+        str += "\t" + value->getString() + "\n";
     }
     return str;
 }
