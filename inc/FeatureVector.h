@@ -13,8 +13,10 @@ public:
     FeatureVector(std::string filepath);
     ~FeatureVector();
     double getNorme();
+
     int getSize();
     double& operator [](int i) {return m_vector[i];}
+    double operator *(FeatureVector B);
 
 private:
     double m_norme;

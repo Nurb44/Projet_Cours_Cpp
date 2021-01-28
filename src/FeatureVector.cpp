@@ -42,3 +42,25 @@ double FeatureVector::getNorme() {
 int FeatureVector::getSize() {
     return m_vector.size();
 }
+
+double FeatureVector::operator*(FeatureVector B) {
+    FeatureVector A = *this;
+
+    // Scalar product of A and B : (|A+B|² - |A|² - |B|²) / (2 * |A| * |B|)
+    double total = 0; // used to calculate scalar product
+
+
+    // Calculate total = |A+B|²
+    int it = 0;
+    for (auto &n : m_vector) {
+        total += pow(n + B[it], 2);
+        it++;
+    }
+
+    // Calculate total = (total - |A|² - |B|²)
+    total = total - pow(A.getNorme(), 2) - pow(B.getNorme(), 2);
+
+    // Calculate total = total / (2 * |A| * |B|)
+    total = total / (2 * A.getNorme() * B.getNorme());
+    return total;
+}
