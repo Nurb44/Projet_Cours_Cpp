@@ -11,9 +11,9 @@ class FeatureVector
 {
 public:
     FeatureVector(std::string filepath);
+    FeatureVector(vector<double>* vector);
     ~FeatureVector();
     double getNorme();
-
     int getSize();
     double& operator [](int i) {return m_vector[i];}
     double operator *(FeatureVector B);
