@@ -52,19 +52,12 @@ int FeatureVector::getSize() {
 double FeatureVector::operator*(FeatureVector B) {
     FeatureVector A = *this;
 
-    // Scalar product of A and B : (|A+B|² - |A|² - |B|²) / 2
-    double total = 0; // used to calculate scalar product
-
-    int i;
-    // Calculate total = |A+B|²
-    for (i = 0; i < A.getSize(); i++) {
-        total += pow(A[i] + B[i], 2);
+    vector<double> vector;
+    for (int i = 0; i < A.getSize(); i++) {
+        vector.push_back(A[i] + B[i]);
     }
+    FeatureVector AB(&vector);
 
-    // Calculate total = (total - |A|² - |B|²)
-    total = total - pow(A.getNorme(), 2) - pow(B.getNorme(), 2);
-
-    // Calculate total = total / 2
-    total = total / 2;
-    return total;
+    // Scalar product of A and B : (|A+B|² - |A|² - |B|²) / 2
+    return (pow(AB.getNorme(), 2) - pow(A.getNorme(), 2) - pow(B.getNorme(), 2)) / 2;
 }
