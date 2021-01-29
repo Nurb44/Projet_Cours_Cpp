@@ -19,6 +19,7 @@ public:
     double operator *(FeatureVector B);
 
 private:
+    double norme();
     double m_norme;
     std::vector<double> m_vector;
 };

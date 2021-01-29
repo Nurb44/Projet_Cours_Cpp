@@ -38,6 +38,12 @@ FeatureVector::FeatureVector(std::string features) {
 
 FeatureVector::~FeatureVector() {
 
+double FeatureVector::norme() {
+    double total = 0;
+    for (const auto &value: m_vector) {
+        total += pow(value, 2);
+    }
+    return sqrt(total);
 }
 
 double FeatureVector::getNorme() {
