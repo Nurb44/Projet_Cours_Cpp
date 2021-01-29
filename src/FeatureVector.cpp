@@ -11,8 +11,6 @@ FeatureVector::FeatureVector(std::string features) {
     std::string temp_sval = ""; // temporary string value
     double temp_dval; // temporary double value
 
-    double total = 0; // used to calculate the norm
-
     // Iterate through all characters of the string
     for (auto it = features.cbegin(); it != features.cend(); ++it) {
         // If character is different of simple space
@@ -21,18 +19,15 @@ FeatureVector::FeatureVector(std::string features) {
             temp_sval = temp_sval + *it;
         }
         // If last character or space
-        // Convert into double
-        // Add pow of it into total (to squirt at the end and get the norm)
-        // Save double at back of vector
+        // Convert into double and save at back of the vector
         if (*it == *" " or it == features.cend() - 1) {
             temp_dval = std::stod(temp_sval);
-            total += pow(temp_dval, 2);
             m_vector.push_back(temp_dval);
             temp_sval = "";
         }
     }
     // Calculate the norm
-    m_norme = sqrt(total);
+    m_norme = norme();
 
 }
 
