@@ -5,6 +5,7 @@ FeatureVector::FeatureVector(vector<double> *vector) {
     m_norme = norme();
 }
 
+FeatureVector::~FeatureVector() {}
 FeatureVector::FeatureVector(std::string features) {
     // FeatureVector accept a string with features "feature_one feature_two ..."
 
