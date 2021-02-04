@@ -7,7 +7,7 @@
 class Sample
 {
 public:
-    Sample(std::string features);
+    Sample(int t, FeatureVector* f);
     ~Sample();
     int getTag();
     FeatureVector getFeature();

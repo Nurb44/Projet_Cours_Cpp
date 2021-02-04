@@ -1,13 +1,9 @@
 #include "../inc/Sample.h"
 
-Sample::Sample(std::string sample)
+Sample::Sample(int t, FeatureVector* f)
 {
-    // Tag is the first character
-    m_tag = stoi(&sample.at(0));
-
-    // We can delete first and second and send it to feature vector
-    sample.erase(0,2);
-    m_features = new FeatureVector(sample);
+    m_tag = t;
+    m_features = f;
 }
 
 Sample::~Sample()
