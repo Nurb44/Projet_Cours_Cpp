@@ -10,7 +10,6 @@ using namespace std;
 class FeatureVector
 {
 public:
-    FeatureVector(std::string filepath);
     FeatureVector(vector<double>* vector);
     ~FeatureVector();
     double getNorme();
