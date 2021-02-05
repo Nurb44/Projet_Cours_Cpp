@@ -1,7 +1,7 @@
 #include "../inc/FeatureVector.h"
 
-FeatureVector::FeatureVector(vector<double> *vector) {
-    m_vector = *vector;
+FeatureVector::FeatureVector(vector<double> vector) {
+    m_vector = vector;
     m_norme = norme();
 }
 

@@ -10,7 +10,7 @@ using namespace std;
 class FeatureVector
 {
 public:
-    FeatureVector(vector<double>* vector);
+    FeatureVector(vector<double> vector);
     ~FeatureVector();
     double getNorme();
     int getSize();

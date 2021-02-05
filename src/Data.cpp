@@ -47,7 +47,7 @@ void Data::load_from_svm(std::string filepath)
             }
         }
 
-        FeatureVector *f = new FeatureVector(&v); // Create FeatureVector
+        FeatureVector *f = new FeatureVector(v); // Create FeatureVector
         m_data.push_back(new Sample(t, f)); // Create Sample
     }
     myfile.close(); // close file
