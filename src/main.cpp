@@ -5,6 +5,7 @@
 #include "..\inc\Knn.h"
 #include "..\inc\ClassificationReport.h"
 
+bool command(string& trainingDataPath, string& testDataPath, int& k);
 
 using namespace std;
 
@@ -39,4 +40,29 @@ int main()
     double t = tmr.elapsed();
     std::cout << "Time to work : " << t << std::endl;
     return 0;
+}
+
+bool command(string& trainingDataPath, string& testDataPath, int& k)
+{
+    bool status = false;
+    string command;
+
+    while(status != true)
+    {
+        // Wait user write command
+        cout << ">>";
+        getline(cin, command);
+
+        // Verify command
+        if(command == "help" || command == "HELP" || command == "Help")
+        {
+            cout << "classifier [training data path] [test data path] [k]" << endl;
+        }
+        else
+        {
+            status = true;
+        }
+    }
+
+    return status;
 }
