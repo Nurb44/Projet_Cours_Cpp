@@ -13,7 +13,7 @@ Data::~Data()
     }
 }
 
-void Data::load_from_svm(std::string filepath)
+int Data::load_from_svm(std::string filepath)
 {
     ifstream myfile(filepath); // open svm file
 
@@ -51,6 +51,7 @@ void Data::load_from_svm(std::string filepath)
         m_data.push_back(new Sample(t, f)); // Create Sample
     }
     myfile.close(); // close file
+    return 1;
 }
 
 void Data::scale()

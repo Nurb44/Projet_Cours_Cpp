@@ -10,7 +10,7 @@ class Data
 public:
     Data();
     ~Data();
-    void load_from_svm(std::string filepath);
+    int load_from_svm(std::string filepath);
     int getNbSamples();
     string getString();
     void scale();
