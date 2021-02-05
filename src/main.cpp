@@ -1,9 +1,13 @@
 #include <iostream>
 #include <stdlib.h>
+#include <chrono>
+#include "..\inc\Data.h"
+#include "..\inc\Knn.h"
+#include "..\inc\ClassificationReport.h"
+
 
 using namespace std;
 
-#include <chrono>
 class Timer
 {
 public:
@@ -21,8 +25,17 @@ private:
 
 int main()
 {
+    // Enter command line
+    string trainingDataPath, testDataPath;
+    int k;
+    command(trainingDataPath, testDataPath, k);
+
+    // Start timer
     Timer tmr;
-    cout << "Hello World !" << endl;
+
+    // Process
+
+    // Stop and display timer
     double t = tmr.elapsed();
     std::cout << "Time to work : " << t << std::endl;
     return 0;
