@@ -26,16 +26,15 @@ private:
 int main()
 {
     // Enter command line
-    string trainingDataPath, testDataPath;
-    int k;
-    Command app = Command();
+    Command cmd = Command();
 
-    while(app.process())
+    while(cmd.process())
     {
         // Start timer
         Timer tmr;
 
         // Process
+		// Penser à vérifier que k < nb sample dans training data
 
         // Stop and display timer
         double t = tmr.elapsed();
