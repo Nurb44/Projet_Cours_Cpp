@@ -9,8 +9,13 @@ class Command
     public:
     Command();
     ~Command();
-
     bool process();
+    bool getCosinus() const;
+    bool getDistance() const;
+    bool getInformation() const;
+    std::string getTrainingDataPath() const;
+    std::string getTestDataPath() const;
+    unsigned int getK() const;
     
     private:
     bool classifier(std::string command);
