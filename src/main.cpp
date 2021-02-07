@@ -1,11 +1,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include <chrono>
+#include "..\inc\Command.h"
 #include "..\inc\Data.h"
 #include "..\inc\Knn.h"
 #include "..\inc\ClassificationReport.h"
-
-bool command(string& trainingDataPath, string& testDataPath, int& k);
 
 using namespace std;
 
@@ -29,40 +28,18 @@ int main()
     // Enter command line
     string trainingDataPath, testDataPath;
     int k;
-    command(trainingDataPath, testDataPath, k);
+    Command app = Command();
 
-    // Start timer
-    Timer tmr;
-
-    // Process
-
-    // Stop and display timer
-    double t = tmr.elapsed();
-    std::cout << "Time to work : " << t << std::endl;
-    return 0;
-}
-
-bool command(string& trainingDataPath, string& testDataPath, int& k)
-{
-    bool status = false;
-    string command;
-
-    while(status != true)
+    while(app.process())
     {
-        // Wait user write command
-        cout << ">>";
-        getline(cin, command);
+        // Start timer
+        Timer tmr;
 
-        // Verify command
-        if(command == "help" || command == "HELP" || command == "Help")
-        {
-            cout << "classifier [training data path] [test data path] [k]" << endl;
-        }
-        else
-        {
-            status = true;
-        }
+        // Process
+
+        // Stop and display timer
+        double t = tmr.elapsed();
+        cout << "Time to work: " << t << endl;
     }
-
-    return status;
+    return 0;
 }
