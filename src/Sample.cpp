@@ -21,9 +21,9 @@ int Sample::getTag()
     return m_tag;
 }
 
-FeatureVector Sample::getFeature()
+FeatureVector* Sample::getFeature()
 {
-    return *m_features;
+    return m_features;
 }
 
 string Sample::getString() {

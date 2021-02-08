@@ -11,7 +11,7 @@ public:
     Sample(Sample &s);
     ~Sample();
     int getTag();
-    FeatureVector getFeature();
+    FeatureVector* getFeature();
     double& operator [](int i) {return (*m_features)[i];}
     std::string getString();
 
