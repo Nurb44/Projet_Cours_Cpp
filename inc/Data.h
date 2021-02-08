@@ -9,6 +9,7 @@ class Data
 {
 public:
     Data();
+    Data(Data &d);
     ~Data();
     int load_from_svm(std::string filepath);
     int getNbSamples();

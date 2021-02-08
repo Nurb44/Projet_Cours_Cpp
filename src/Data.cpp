@@ -6,6 +6,14 @@ Data::Data()
     m_nb_samples = 0;
 }
 
+Data::Data(Data &d) {
+    m_nb_features = d.m_nb_features;
+    m_nb_samples = d.m_nb_samples;
+    for(const auto& value: d.m_data) {
+        m_data.push_back(new Sample(*value));
+    }
+}
+
 Data::~Data()
 {
     for (const auto &value: m_data) {
