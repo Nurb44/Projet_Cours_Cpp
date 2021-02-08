@@ -8,6 +8,7 @@ class Sample
 {
 public:
     Sample(int t, FeatureVector* f);
+    Sample(Sample &s);
     ~Sample();
     int getTag();
     FeatureVector getFeature();

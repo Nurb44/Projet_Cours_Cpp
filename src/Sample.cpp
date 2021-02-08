@@ -6,6 +6,11 @@ Sample::Sample(int t, FeatureVector* f)
     m_features = f;
 }
 
+Sample::Sample(Sample &s) {
+    m_tag = s.m_tag;
+    m_features = new FeatureVector(*s.m_features);
+}
+
 Sample::~Sample()
 {
     delete m_features;
