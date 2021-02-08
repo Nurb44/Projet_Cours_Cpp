@@ -15,7 +15,7 @@ public:
     double getNorme();
     int getSize();
     double& operator [](int i) {return m_vector[i];}
-    double operator *(FeatureVector B);
+    double operator *(FeatureVector* B);
 
 private:
     double norme();

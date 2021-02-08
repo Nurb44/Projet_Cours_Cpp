@@ -23,12 +23,12 @@ int FeatureVector::getSize() {
     return m_vector.size();
 }
 
-double FeatureVector::operator*(FeatureVector B) {
+double FeatureVector::operator*(FeatureVector* B) {
     // a scalar b = sum(a[i]*b[i]) with i = {0,n}
-    FeatureVector A = *this;
+    FeatureVector* A = this;
     double r = 0;
-    for (int i = 0; i < A.getSize(); i++) {
-        r += A[i] * B[i];
+    for (int i = 0; i < A->getSize(); i++) {
+        r += (*A)[i] * (*B)[i];
     }
     return r;
 }
