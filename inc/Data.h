@@ -5,23 +5,19 @@
 #include "Sample.h"
 #include <fstream>
 
-class Data
-{
+class Data {
 public:
     Data();
     Data(Data &d);
     ~Data();
-    int load_from_svm(std::string filepath);
-    void scale();
-    Sample*& operator [](int i) {return (m_data)[i];}
-    Data* split(int percentage);
-    void add(Sample* s);
-
+    bool load_from_svm(std::string filepath);
     int getNbSamples() const;
     string getString() const;
+    Sample *&operator[](int i) { return (m_data)[i]; }
+    Data *split(unsigned int ratio);
 
 private:
-    std::vector<Sample*> m_data;
+    std::vector<Sample *> m_data;
     int m_nb_features;
     int m_nb_samples;
 };

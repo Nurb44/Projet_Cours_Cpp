@@ -1,61 +1,78 @@
 #include "../inc/Data.h"
 
-Data::Data()
-{
+/**
+ * Constructor Data.
+ */
+Data::Data() {
     m_nb_features = 0;
     m_nb_samples = 0;
 }
 
+/**
+ * Copy constructor Data.
+ *
+ * @param d Reference to a Data.
+ */
 Data::Data(Data &d) {
     m_nb_features = d.m_nb_features;
     m_nb_samples = d.m_nb_samples;
-    for(const auto& value: d.m_data) {
+    for (const auto &value: d.m_data) {
         m_data.push_back(new Sample(*value));
     }
 }
 
-Data::~Data()
-{
+/**
+ * Destructor Data.
+ */
+Data::~Data() {
     for (const auto &value: m_data) {
         delete value;
     }
 }
 
-void Data::add(Sample *s) {
-    m_nb_samples +=1;
-    m_data.push_back(s);
-}
+/**
+ * Split Data using ratio.
+ * Remove part from obj1 to put it into obj2
+ *
+ * @param ratio Ratio to split between obj1 and obj2.
+ * @return New Data pointer.
+ */
+Data *Data::split(unsigned int ratio) {
+    if (ratio > 0 and ratio < 100)
+        return nullptr;
 
-Data* Data::split(int percentage) {
-    Data* n = new Data(*this);
+    Data *n = new Data(*this);
 
-    int nb_to_pop = m_nb_samples - (percentage * m_nb_samples / 100);
-    m_data.erase(m_data.end()-(m_nb_samples-nb_to_pop), m_data.end());
-    n->m_data.erase(n->m_data.begin(), n->m_data.begin()+nb_to_pop);
+    int nb_to_pop = m_nb_samples - (ratio * m_nb_samples / 100);
+    m_data.erase(m_data.end() - (m_nb_samples - nb_to_pop), m_data.end());
+    n->m_data.erase(n->m_data.begin(), n->m_data.begin() + nb_to_pop);
 
     m_nb_samples = nb_to_pop;
     n->m_nb_samples -= nb_to_pop;
     return n;
 }
 
-int Data::load_from_svm(std::string filepath)
-{
-    ifstream myfile(filepath); // open svm file
+/**
+ * Open SVM file and load data
+ *
+ * @param filepath SVM file to read from.
+ * @return True if succeeded, False else.
+ */
+bool Data::load_from_svm(std::string filepath) {
+    ifstream file(filepath); // open svm file
 
-    if(!myfile)
-    {
-        cout << "File does not exist" << endl;
-        return 0;
+    if (!file) {
+        return false;
     }
 
     string line; // current line
-    std::getline(myfile, line); // read first line
+    std::getline(file, line); // read first line
     m_nb_samples = stoi(line); // nb sample is first line
 
-    std::getline(myfile, line); // read second line
+    std::getline(file, line); // read second line
     m_nb_features = stoi(line); // nb feature is second line
 
-    while (getline(myfile, line)) {
+    while (getline(file, line)) {
         std::string temp_sval = ""; // temporary string value
         double temp_dval; // temporary double value
         std::vector<double> v; // temporary vector
@@ -81,19 +98,24 @@ int Data::load_from_svm(std::string filepath)
         FeatureVector *f = new FeatureVector(v); // Create FeatureVector
         m_data.push_back(new Sample(t, f)); // Create Sample
     }
-    myfile.close(); // close file
-    return 1;
+    file.close(); // close file
+    return true;
 }
 
-void Data::scale()
-{
-    // TODO : Function to define
-}
-
+/**
+ * Accessor of m_nb_samples.
+ *
+ * @return number of samples in Data.
+ */
 int Data::getNbSamples() const {
     return m_nb_samples;
 }
 
+/**
+ * Give string representation of the Data.
+ *
+ * @return String representation of the Data.
+ */
 string Data::getString() const {
     string str = "";
     str += "Nombre de Sample : " + to_string(m_nb_samples) + "\n";
