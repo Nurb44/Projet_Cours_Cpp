@@ -30,11 +30,8 @@ Data* Data::split(int percentage) {
     Data* n = new Data(*this);
 
     int nb_to_pop = m_nb_samples - (percentage * m_nb_samples / 100);
-    cout << "bite " << nb_to_pop << endl;
     m_data.erase(m_data.end()-(m_nb_samples-nb_to_pop), m_data.end());
     n->m_data.erase(n->m_data.begin(), n->m_data.begin()+nb_to_pop);
-
-    cout << "bite " << n->m_nb_samples << endl;
 
     m_nb_samples = nb_to_pop;
     n->m_nb_samples -= nb_to_pop;
@@ -44,6 +41,12 @@ Data* Data::split(int percentage) {
 int Data::load_from_svm(std::string filepath)
 {
     ifstream myfile(filepath); // open svm file
+
+    if(!myfile)
+    {
+        cout << "File does not exist" << endl;
+        return 0;
+    }
 
     string line; // current line
     std::getline(myfile, line); // read first line
