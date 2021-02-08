@@ -90,13 +90,11 @@ void Data::scale()
     // TODO : Function to define
 }
 
-int Data::getNbSamples()
-{
+int Data::getNbSamples() const {
     return m_nb_samples;
 }
 
-string Data::getString()
-{
+string Data::getString() const {
     string str = "";
     str += "Nombre de Sample : " + to_string(m_nb_samples) + "\n";
     str += "Nombre de Features/Sample : " + to_string(m_nb_features) + "\n";

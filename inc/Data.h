@@ -12,13 +12,13 @@ public:
     Data(Data &d);
     ~Data();
     int load_from_svm(std::string filepath);
-    int getNbSamples();
-    string getString();
     void scale();
     Sample*& operator [](int i) {return (m_data)[i];}
     Data* split(int percentage);
     void add(Sample* s);
 
+    int getNbSamples() const;
+    string getString() const;
 
 private:
     std::vector<Sample*> m_data;
