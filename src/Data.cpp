@@ -38,7 +38,7 @@ Data::~Data() {
  * @return New Data pointer.
  */
 Data *Data::split(unsigned int ratio) {
-    if (ratio > 0 and ratio < 100)
+    if (ratio < 1 or ratio > 99)
         return nullptr;
 
     Data *n = new Data(*this);
