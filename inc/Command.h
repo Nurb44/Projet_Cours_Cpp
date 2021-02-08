@@ -15,6 +15,7 @@ class Command
     bool getInformation() const;
     std::string getTrainingDataPath() const;
     std::string getTestDataPath() const;
+    bool getTestDataPathValue() const;
     unsigned int getK() const;
     
     private:
@@ -26,6 +27,7 @@ class Command
     bool m_information;
     std::string m_trainingDataPath;
     std::string m_testDataPath;
+    bool m_testDataPathValue;
     unsigned int m_k;
 };
 

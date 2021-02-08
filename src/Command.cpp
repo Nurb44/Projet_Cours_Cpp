@@ -70,6 +70,7 @@ bool Command::classifier(std::string command)
     m_cosinus = false;
     m_distance = false;
     m_information = false;
+    m_testDataPathValue = false;
 
     char c;
     bool endArg = false;
@@ -189,7 +190,17 @@ bool Command::classifier(std::string command)
     }
 
     // Save test data path
-    m_testDataPath = command.substr(startPath, endPath - startPath + 4);
+    m_testDataPath = command.substr(startPath, endPath - startPath);
+
+    // Verify if path or value
+    if(m_testDataPath > "0" && m_testDataPath < "100")
+    {
+        m_testDataPathValue = true;
+    }
+    else
+    {
+        m_testDataPath = command.substr(startPath, endPath - startPath + 4);
+    }
 
     // Update startPath
     startPath = endPath + 6;
@@ -233,6 +244,11 @@ string Command::getTrainingDataPath() const
 string Command::getTestDataPath() const
 {
     return m_testDataPath;
+}
+
+bool Command::getTestDataPathValue() const
+{
+    return m_testDataPathValue;
 }
 
 unsigned int Command::getK() const
