@@ -21,6 +21,11 @@ Data::~Data()
     }
 }
 
+void Data::add(Sample *s) {
+    m_nb_samples +=1;
+    m_data.push_back(s);
+}
+
 int Data::load_from_svm(std::string filepath)
 {
     ifstream myfile(filepath); // open svm file

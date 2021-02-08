@@ -16,6 +16,7 @@ public:
     string getString();
     void scale();
     Sample*& operator [](int i) {return (m_data)[i];}
+    void add(Sample* s);
 
 
 private:
