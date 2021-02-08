@@ -11,7 +11,6 @@ class FeatureVector
 {
 public:
     FeatureVector(vector<double> vector);
-    ~FeatureVector();
     double getNorme();
     int getSize();
     double& operator [](int i) {return m_vector[i];}

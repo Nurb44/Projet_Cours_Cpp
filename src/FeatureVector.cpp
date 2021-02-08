@@ -5,8 +5,6 @@ FeatureVector::FeatureVector(vector<double> vector) {
     m_norme = norme();
 }
 
-FeatureVector::~FeatureVector() {}
-
 double FeatureVector::norme() {
     double total = 0;
     for (const auto &value: m_vector) {
