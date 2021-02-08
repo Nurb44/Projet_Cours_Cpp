@@ -7,14 +7,13 @@
 
 using namespace std;
 
-class FeatureVector
-{
+class FeatureVector {
 public:
     FeatureVector(vector<double> vector);
     double getNorme() const;
     int getSize() const;
-    double& operator [](int i) {return m_vector[i];}
-    double operator *(FeatureVector* B);
+    double &operator[](int i) { return m_vector[i]; }
+    double operator*(FeatureVector *B);
 
 private:
     double norme();
