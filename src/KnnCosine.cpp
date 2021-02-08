@@ -5,7 +5,7 @@ KnnCosine::KnnCosine(): Knn()
 
 int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Data d)
 {
-    // Declaation & initialisation of kppv and tag array
+    // Declaration & initialisation of kppv and tag array
     double kppv[k];
     for(unsigned int i = 0; i < k; i++)
     {

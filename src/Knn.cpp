@@ -3,25 +3,39 @@
 Knn::Knn()
 {}
 
-int Knn::predict(Data d, FeatureVector *f, const unsigned int k)
+int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool info)
 {
-    // Calculation of cosinus similarity
-    std::vector<double> cos = similarity(d, f);
+    // Calculation of similarity
+    std::vector<double> val = similarity(d, f);
 
     // k associated tag
-    int *tag = predictSingle(k, cos, d);
+    int *tag = predictSingle(k, val, d);
+    if(info)
+    {
+        for(unsigned int i = 0; i < k; i++)
+        {
+            cout << i+1 << "knn's tag: " << tag[i] << endl;
+        }
+    }
 
     // Choose tag
     unsigned int nbTag[10];
+    for(unsigned int i = 0; i < 10; i++)
+    {
+        nbTag[i] = 0;
+    }
     for(unsigned int i = 0; i < k; i++)
     {
-        nbTag[tag[i]]++;
+        nbTag[*tag++]++;
     }
+
     int tagMax = 0;
-    for(unsigned int i = 0; i < k - 1; i++)
+    unsigned int nbTagTmp = nbTag[0];
+    for(unsigned int i = 0; i < 9; i++)
     {
-        if(nbTag[i] < nbTag[i + 1])
+        if(nbTagTmp < nbTag[i + 1])
         {
+            nbTagTmp = nbTag[i + 1];
             tagMax = i + 1;
         }
     }
