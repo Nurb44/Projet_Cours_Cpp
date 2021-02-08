@@ -16,19 +16,17 @@ Sample::~Sample()
     delete m_features;
 }
 
-int Sample::getTag()
-{
+int Sample::getTag() const {
     return m_tag;
 }
 
-FeatureVector* Sample::getFeature()
-{
+FeatureVector *Sample::getFeature() const {
     return m_features;
 }
 
-string Sample::getString() {
     std::string str = "";
     str += "Tag : " + std::to_string(m_tag) + "; ";
+string Sample::getString() const {
     str += "Norme : " + std::to_string(m_features->getNorme());
     return str;
 }

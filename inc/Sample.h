@@ -10,10 +10,10 @@ public:
     Sample(int t, FeatureVector* f);
     Sample(Sample &s);
     ~Sample();
-    int getTag();
-    FeatureVector* getFeature();
+    int getTag() const;
     double& operator [](int i) {return (*m_features)[i];}
-    std::string getString();
+    FeatureVector *getFeature() const;
+    std::string getString() const;
 
 private:
     int m_tag;
