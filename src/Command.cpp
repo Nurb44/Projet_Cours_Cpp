@@ -145,16 +145,14 @@ bool Command::classifier(std::string command)
     // Verify end of arguments
     if(endArg == false)
     {
-        if(*command.substr(15, 1).c_str() == ' ')
-        {
-            endArg = true;
-            startPath = 16;
-        }
-        else
+        if(*command.substr(15, 1).c_str() != ' ')
         {
             cout << "Too many arguments" << endl;
             return false;
         }
+
+        endArg = true;
+        startPath = 16;
     }
 
     // Verify start of path
