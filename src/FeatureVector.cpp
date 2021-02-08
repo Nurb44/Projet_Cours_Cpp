@@ -13,11 +13,11 @@ double FeatureVector::norme() {
     return sqrt(total);
 }
 
-double FeatureVector::getNorme() {
+double FeatureVector::getNorme() const {
     return m_norme;
 }
 
-int FeatureVector::getSize() {
+int FeatureVector::getSize() const {
     return m_vector.size();
 }
 

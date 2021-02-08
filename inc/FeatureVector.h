@@ -11,8 +11,8 @@ class FeatureVector
 {
 public:
     FeatureVector(vector<double> vector);
-    double getNorme();
-    int getSize();
+    double getNorme() const;
+    int getSize() const;
     double& operator [](int i) {return m_vector[i];}
     double operator *(FeatureVector* B);
 
