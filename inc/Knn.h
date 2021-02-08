@@ -10,10 +10,8 @@ class Knn
     public:
     Knn();
     int predict(Data d, FeatureVector f, const unsigned int k);
-
-    protected:
-    virtual int* predictSingle(unsigned int k, std::vector<double> cos, Data d);
-    virtual std::vector<double> similarity(Data d, FeatureVector f);
+    virtual int* predictSingle(unsigned int k, std::vector<double> cos, Data d) = 0;
+    virtual std::vector<double> similarity(Data d, FeatureVector f) = 0;
 };
 
 #endif
