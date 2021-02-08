@@ -35,7 +35,7 @@ int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Dat
     return tag;
 }
 
-std::vector<double> KnnCosine::similarity(Data d, FeatureVector f)
+std::vector<double> KnnCosine::similarity(Data d, FeatureVector *f)
 {
     // Declaration of cosinus similarity vector
     std::vector<double> cos;
@@ -43,7 +43,7 @@ std::vector<double> KnnCosine::similarity(Data d, FeatureVector f)
     // Calculation of cosinus similarity
     for(unsigned int i = 0; i < d.getNbSamples(); i++)
     {
-        cos.push_back((d[i]->getFeature() * f) / (d[i]->getFeature().getNorme() * f.getNorme()));
+        cos.push_back((*d[i]->getFeature() * f) / (d[i]->getFeature()->getNorme() * f->getNorme()));
     }
 
     return cos;

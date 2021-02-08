@@ -3,7 +3,7 @@
 Knn::Knn()
 {}
 
-int Knn::predict(Data d, FeatureVector f, const unsigned int k)
+int Knn::predict(Data d, FeatureVector *f, const unsigned int k)
 {
     // Calculation of cosinus similarity
     std::vector<double> cos = similarity(d, f);

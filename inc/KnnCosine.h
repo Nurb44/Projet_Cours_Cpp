@@ -9,7 +9,7 @@ class KnnCosine: public Knn
     public:
     KnnCosine();
     virtual int* predictSingle(const unsigned int k, std::vector<double> cos, Data d);
-    virtual std::vector<double> similarity(Data d, FeatureVector f);
+    virtual std::vector<double> similarity(Data d, FeatureVector *f);
 };
 
 #endif
