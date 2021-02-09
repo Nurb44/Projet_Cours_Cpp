@@ -10,7 +10,7 @@ using namespace std;
 
 class ClassificationReport {
 public:
-    ClassificationReport(vector<unsigned int> realData, vector<unsigned int> guessedData);
+    ClassificationReport(vector<unsigned int> realTags, vector<unsigned int> guessedTags);
     string getString() const;
 
 private:
