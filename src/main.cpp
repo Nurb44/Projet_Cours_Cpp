@@ -34,19 +34,27 @@ int main()
         Timer tmr;
 
         // Process
+        bool process = false;
         // Declaration of data
         Data trainingData;
         Data *testData;
-        // If value then split for test data
-        if(cmd.getTestDataPathValue())
+        // Load for training data
+        if(trainingData.load_from_svm(cmd.getTrainingDataPath()))
         {
-            testData = trainingData.split(stoi(cmd.getTestDataPath()));
-        }
-        // If path then load for test data
-        else if(testData->load_from_svm(cmd.getTestDataPath()))
-        {
-            // Load for training data
-            if(trainingData.load_from_svm(cmd.getTrainingDataPath()))
+            // If value then split for test data
+            if(cmd.getTestDataPathValue())
+            {
+                testData = trainingData.split(stoi(cmd.getTestDataPath()));
+                process = true;
+                cout << testData->getString() << endl;
+            }
+            // If path then load for test data
+            else if(testData->load_from_svm(cmd.getTestDataPath()))
+            {
+                process = true;
+            }
+            // Verify process
+            if(process)
             {
                 // Verify k <= nb sample
                 if(cmd.getK() <= trainingData.getNbSamples())
@@ -69,7 +77,7 @@ int main()
                         // Distance calculation
                         if(cmd.getDistance())
                         {
-
+                            
                         }
                     }
 
