@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <chrono>
+#include <vector>
 #include "..\inc\Command.h"
 #include "..\inc\Data.h"
 #include "..\inc\KnnCosine.h"
@@ -44,9 +45,9 @@ int main()
             // If value then split for test data
             if(cmd.getTestDataPathValue())
             {
+                delete testData;
                 testData = trainingData.split(stoi(cmd.getTestDataPath()));
                 process = true;
-                cout << testData->getString() << endl;
             }
             // If path then load for test data
             else
@@ -63,16 +64,22 @@ int main()
                 // Verify k <= nb sample
                 if(cmd.getK() <= trainingData.getNbSamples())
                 {
+                    // Declaration of variables for classification report
+                    vector<unsigned int> tag;
+                    vector<unsigned int> predictTagCos;
+                    vector<unsigned int> predictTagDist;
                     // Test all samples of test data
                     for(unsigned int i = 0; i < testData->getNbSamples(); i++)
                     {
                         // Declaration of predict tag
-                        int predictTag;
+                        unsigned int predictTag;
                         // Cosine calculation
                         if(cmd.getCosinus())
                         {
                             KnnCosine knnCos = KnnCosine();
                             predictTag = knnCos.predict(trainingData, (*testData)[i]->getFeature(), cmd.getK(), cmd.getInformation());
+                            tag.push_back((*testData)[i]->getTag());
+                            predictTagCos.push_back(predictTag);
                             if(cmd.getInformation())
                             {
                                 cout << predictTag << " == " << (*testData)[i]->getTag() << " ? " << (predictTag == (*testData)[i]->getTag()) << endl;
@@ -83,6 +90,18 @@ int main()
                         {
                             
                         }
+                    }
+
+                    // Classification report
+                    if(cmd.getCosinus())
+                    {
+                        ClassificationReport reportCos(tag, predictTagCos);
+                        cout << reportCos.getString() << endl;
+                    }
+                    if(cmd.getDistance())
+                    {
+                        ClassificationReport reportDist(tag, predictTagDist);
+                        cout << reportDist.getString() << endl;
                     }
 
                     // Stop and display timer
