@@ -66,8 +66,6 @@ bool Data::load_from_svm(const std::string &filepath) {
         return false;
     }
 
-    cout << filepath << endl;
-
     string line; // current line
     std::getline(file, line); // read first line
     m_nb_samples = stoi(line); // nb sample is first line
