@@ -49,9 +49,13 @@ int main()
                 cout << testData->getString() << endl;
             }
             // If path then load for test data
-            else if(testData->load_from_svm(cmd.getTestDataPath()))
+            else
             {
-                process = true;
+                testData = new Data();
+                if(testData->load_from_svm(cmd.getTestDataPath()))
+                {
+                    process = true;
+                }
             }
             // Verify process
             if(process)
