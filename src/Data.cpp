@@ -43,7 +43,7 @@ Data *Data::split(unsigned int ratio) {
 
     Data *n = new Data(*this);
 
-    int nb_to_pop = m_nb_samples - (ratio * m_nb_samples / 100);
+    unsigned int nb_to_pop = m_nb_samples - (ratio * m_nb_samples / 100);
     m_data.erase(m_data.end() - (m_nb_samples - nb_to_pop), m_data.end());
     n->m_data.erase(n->m_data.begin(), n->m_data.begin() + nb_to_pop);
 
@@ -58,7 +58,7 @@ Data *Data::split(unsigned int ratio) {
  * @param filepath SVM file to read from.
  * @return True if succeeded, False else.
  */
-bool Data::load_from_svm(std::string filepath) {
+bool Data::load_from_svm(const std::string &filepath) {
     ifstream file(filepath); // open svm file
 
     if (!file) {
@@ -73,7 +73,7 @@ bool Data::load_from_svm(std::string filepath) {
     m_nb_features = stoi(line); // nb feature is second line
 
     while (getline(file, line)) {
-        std::string temp_sval = ""; // temporary string value
+        std::string temp_sval; // temporary string value
         double temp_dval; // temporary double value
         std::vector<double> v; // temporary vector
 
@@ -84,7 +84,7 @@ bool Data::load_from_svm(std::string filepath) {
             // If character is different of simple space
             // Concatenate with previous
             if (*it != *" ") {
-                temp_sval = temp_sval + *it;
+                temp_sval += *it;
             }
             // If last character or space
             // Convert into double and save at back of the vector
@@ -95,7 +95,7 @@ bool Data::load_from_svm(std::string filepath) {
             }
         }
 
-        FeatureVector *f = new FeatureVector(v); // Create FeatureVector
+        auto *f = new FeatureVector(v); // Create FeatureVector
         m_data.push_back(new Sample(t, f)); // Create Sample
     }
     file.close(); // close file
@@ -107,7 +107,7 @@ bool Data::load_from_svm(std::string filepath) {
  *
  * @return number of samples in Data.
  */
-int Data::getNbSamples() const {
+unsigned int Data::getNbSamples() const {
     return m_nb_samples;
 }
 
@@ -117,11 +117,11 @@ int Data::getNbSamples() const {
  * @return String representation of the Data.
  */
 string Data::getString() const {
-    string str = "";
-    str += "Nombre de Sample : " + to_string(m_nb_samples) + "\n";
-    str += "Nombre de Features/Sample : " + to_string(m_nb_features) + "\n";
+    string str;
+    str += "Number of Sample : " + to_string(m_nb_samples) + "\n";
+    str += "Number of Feature by Sample : " + to_string(m_nb_features) + "\n";
 
-    str += "Liste des samples : \n";
+    str += "Sample list : \n";
     int i = 0;
     for (const auto &value: m_data) {
         i++;
