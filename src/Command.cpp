@@ -70,7 +70,7 @@ bool Command::knn(std::string command)
     m_cosinus = false;
     m_distance = false;
     m_information = false;
-    m_testDataPathValue = false;
+    m_testDataPathStatus = false;
 
     char c;
     bool endArg = false;
@@ -196,9 +196,10 @@ bool Command::knn(std::string command)
     m_testDataPath = command.substr(index, endPath - index);
 
     // Verify if path or value
-    if(m_testDataPath > "0" && m_testDataPath < "100") //--------------------------------------------------------bug si 2 ou autre
+    m_testDataPathValue = atoi(m_testDataPath.c_str());
+    if(m_testDataPathValue > 0 && m_testDataPathValue < 100)
     {
-        m_testDataPathValue = true;
+        m_testDataPathStatus = true;
     }
     else
     {
@@ -209,17 +210,14 @@ bool Command::knn(std::string command)
     index = endPath + 6;
 
     // Save k
-    string k = command.substr(index, command.length() - index);
+    m_k = atoi(command.substr(index, command.length() - index).c_str());
 
     // Verify k
-    if(k < "1" || k > "65535")
+    if(m_k < 1 || m_k > 65535)
     {
         cout << "k must be between 1 and 65535" << endl;
         return false;
     }
-
-    // Save k
-    m_k = stoi(k);
 
     return true;
 }
@@ -249,7 +247,12 @@ string Command::getTestDataPath() const
     return m_testDataPath;
 }
 
-bool Command::getTestDataPathValue() const
+bool Command::getTestDataPathStatus() const
+{
+    return m_testDataPathStatus;
+}
+
+unsigned int Command::getTestDataPathValue() const
 {
     return m_testDataPathValue;
 }
