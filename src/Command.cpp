@@ -26,9 +26,9 @@ bool Command::process()
         getline(cin, command);
 
         // Verify command
-        if(command.substr(0, 10) == "classifier")
+        if(command.substr(0, 3) == "knn")
         {
-            if(classifier(command))
+            if(knn(command))
             {
                 return status;
             }
@@ -64,7 +64,7 @@ bool Command::process()
     return status;
 }
 
-bool Command::classifier(std::string command)
+bool Command::knn(std::string command)
 {
     // Initialisation of variable
     m_cosinus = false;
@@ -74,16 +74,18 @@ bool Command::classifier(std::string command)
 
     char c;
     bool endArg = false;
-    int startPath = 0;
+    int index = 3;
 
     // Verify space and declaration of argument
-    if(command.substr(10, 2) != " -")
+    if(command.substr(index, 2) != " -")
     {
         cout << "The arguments are missing" << endl;
         return false;
     }
+    index += 2;
+
     // Verify first argument
-    c = *command.substr(12, 1).c_str();
+    c = *command.substr(index, 1).c_str();
     if(c == 'c')
     {
         m_cosinus = true;
@@ -97,9 +99,10 @@ bool Command::classifier(std::string command)
         cout << "The first argument is wrong" << endl;
         return false;
     }
+    index++;
 
     // Verify if second argument
-    c = *command.substr(13, 1).c_str();
+    c = *command.substr(index, 1).c_str();
     if(m_distance && c == 'c')
     {
         m_cosinus = true;
@@ -115,18 +118,18 @@ bool Command::classifier(std::string command)
     else if(c == ' ')
     {
         endArg = true;
-        startPath = 14;
     }
     else
     {
         cout << "The second argument is wrong" << endl;
         return false;
     }
+    index++;
 
     // Verify if third argument
     if(endArg == false)
     {
-        c = *command.substr(14, 1).c_str();
+        c = *command.substr(index, 1).c_str();
         if(c == 'i')
         {
             m_information = true;
@@ -134,37 +137,37 @@ bool Command::classifier(std::string command)
         else if(c == ' ')
         {
             endArg = true;
-            startPath = 15;
         }
         else
         {
             cout << "The third argument is wrong" << endl;
             return false;
         }
+        index++;
     }
     
     // Verify end of arguments
     if(endArg == false)
     {
-        if(*command.substr(15, 1).c_str() != ' ')
+        if(*command.substr(index, 1).c_str() != ' ')
         {
             cout << "Too many arguments" << endl;
             return false;
         }
 
         endArg = true;
-        startPath = 16;
+        index++;
     }
 
     // Verify start of path
-    if(endArg && *command.substr(startPath, 1).c_str() != '\"')
+    if(endArg && *command.substr(index, 1).c_str() != '\"')
     {
         cout << "First path must start with: \"" << endl;
         return false;
     }
 
     // Find end of training data path
-    size_t endPath = command.find(".svm\" \"", startPath);
+    size_t endPath = command.find(".svm\" \"", index);
 
     // Verify endPath
     if(endPath == string::npos)
@@ -174,13 +177,13 @@ bool Command::classifier(std::string command)
     }
 
     // Save training data path
-    m_trainingDataPath = command.substr(startPath + 1, endPath - startPath + 3);
+    m_trainingDataPath = command.substr(index + 1, endPath - index + 3);
 
-    // Update startPath
-    startPath = endPath + 7;
+    // Update index
+    index = endPath + 7;
 
     // Find end of test data path
-    endPath = command.find(".svm\" ", startPath);
+    endPath = command.find(".svm\" ", index);
 
     // Verify endPath
     if(endPath == string::npos)
@@ -190,7 +193,7 @@ bool Command::classifier(std::string command)
     }
 
     // Save test data path
-    m_testDataPath = command.substr(startPath, endPath - startPath);
+    m_testDataPath = command.substr(index, endPath - index);
 
     // Verify if path or value
     if(m_testDataPath > "0" && m_testDataPath < "100")
@@ -199,14 +202,14 @@ bool Command::classifier(std::string command)
     }
     else
     {
-        m_testDataPath = command.substr(startPath, endPath - startPath + 4);
+        m_testDataPath = command.substr(index, endPath - index + 4);
     }
 
-    // Update startPath
-    startPath = endPath + 6;
+    // Update index
+    index = endPath + 6;
 
     // Save k
-    string k = command.substr(startPath, command.length() - startPath);
+    string k = command.substr(index, command.length() - index);
 
     // Verify k
     if(k < "1" || k > "65535")
@@ -258,11 +261,11 @@ unsigned int Command::getK() const
 
 void Command::help()
 {
-    cout << "help         Display information about commands" << endl;
+    cout << "help   Display information about commands" << endl;
     cout << endl;
-    cout << "classifier   Calculation of k nearest neighbors algorithm" << endl;
+    cout << "knn    Calculation of k nearest neighbors algorithm" << endl;
     cout << " Format:" << endl;
-    cout << "    classifier -[argument(s)] \"[training data path]\" \"[test data path]\" [k]" << endl;
+    cout << "    knn -[argument(s)] \"[training data path]\" \"[test data path]\" [k]" << endl;
     cout << " Mandatory argument(s):" << endl;
     cout << "  - c           Calculation with cosine similarity" << endl;
     cout << "  - d           Calculation with distance" << endl;
@@ -271,5 +274,5 @@ void Command::help()
     cout << " Optional argument:" << endl;
     cout << "  - [arg(s)]i   Display information about results" << endl;
     cout << endl;
-    cout << "exit         Exit the application" << endl << endl;
+    cout << "exit   Exit the application" << endl << endl;
 }

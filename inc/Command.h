@@ -19,7 +19,7 @@ class Command
     unsigned int getK() const;
     
     private:
-    bool classifier(std::string command);
+    bool knn(std::string command);
     void help();
 
     bool m_cosinus;
