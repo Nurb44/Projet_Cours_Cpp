@@ -3,7 +3,7 @@
 KnnCosine::KnnCosine(): Knn()
 {}
 
-int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Data d)
+unsigned int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Data d)
 {
     // Declaration & initialisation of kppv and tag array
     double kppv[k];
@@ -11,7 +11,7 @@ int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Dat
     {
         kppv[i] = -1;
     }
-    int *tag = new int[k];
+    unsigned int *tag = new unsigned int[k];
 
     // Sort cosinus similarity and associated tag
     for(unsigned int i = 0; i < cos.size(); i++)

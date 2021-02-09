@@ -3,13 +3,13 @@
 Knn::Knn()
 {}
 
-int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool info)
+unsigned int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool info)
 {
     // Calculation of similarity
     std::vector<double> val = similarity(d, f);
 
     // k associated tag
-    int *tag = predictSingle(k, val, d);
+    unsigned int *tag = predictSingle(k, val, d);
     if(info)
     {
         for(unsigned int i = 0; i < k; i++)
@@ -29,7 +29,7 @@ int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool info)
         nbTag[*tag++]++;
     }
 
-    int tagMax = 0;
+    unsigned int tagMax = 0;
     unsigned int nbTagTmp = nbTag[0];
     for(unsigned int i = 0; i < 9; i++)
     {
