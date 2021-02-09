@@ -38,7 +38,7 @@ Data::~Data() {
  * @return New Data pointer.
  */
 Data *Data::split(unsigned int ratio) {
-    if (ratio < 1 or ratio > 99)
+    if (ratio < 1 || ratio > 99)
         return nullptr;
 
     Data *n = new Data(*this);
@@ -62,8 +62,11 @@ bool Data::load_from_svm(const std::string &filepath) {
     ifstream file(filepath); // open svm file
 
     if (!file) {
+        cout << "File does not exist" << endl;
         return false;
     }
+
+    cout << filepath << endl;
 
     string line; // current line
     std::getline(file, line); // read first line
