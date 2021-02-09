@@ -4,7 +4,7 @@ using namespace std;
 
 Command::Command()
 {
-    cout << "WELCOME TO THE CLASSIFIER" << endl;
+    cout << "WELCOME TO THE KNN" << endl;
     cout << "If you need help, enter \"help\"" << endl;
 }
 
@@ -196,7 +196,7 @@ bool Command::knn(std::string command)
     m_testDataPath = command.substr(index, endPath - index);
 
     // Verify if path or value
-    if(m_testDataPath > "0" && m_testDataPath < "100")
+    if(m_testDataPath > "0" && m_testDataPath < "100") //--------------------------------------------------------bug si 2 ou autre
     {
         m_testDataPathValue = true;
     }
