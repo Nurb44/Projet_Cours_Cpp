@@ -2,15 +2,27 @@
 
 using namespace std;
 
+/**
+ * Constructor Commmand
+ */
 Command::Command()
 {
     cout << "WELCOME TO THE KNN" << endl;
     cout << "If you need help, enter \"help\"" << endl;
 }
 
+/**
+ * Destructor Command
+ */
 Command::~Command()
 {}
 
+/**
+ * Process of Command
+ * Read command enter by user et verify it
+ * 
+ * @return status of process
+ */
 bool Command::process()
 {
     // Declaration and initialisation of variables
@@ -64,6 +76,12 @@ bool Command::process()
     return status;
 }
 
+/**
+ * Verify command "knn" and init members variables
+ * 
+ * @param command command "knn" save into a string
+ * @return status of the command "knn"
+ */
 bool Command::knn(std::string command)
 {
     // Initialisation of variable
@@ -222,46 +240,89 @@ bool Command::knn(std::string command)
     return true;
 }
 
+/**
+ * Getter of m_cosinus
+ * 
+ * @return status of cosinus
+ */
 bool Command::getCosinus() const
 {
     return m_cosinus;
 }
 
+/**
+ * Getter of m_distance
+ * 
+ * @return status of distance
+ */
 bool Command::getDistance() const
 {
     return m_distance;
 }
 
+/**
+ * Getter of m_information
+ * 
+ * @return status of information
+ */
 bool Command::getInformation() const
 {
     return m_information;
 }
 
+/**
+ * Getter of m_trainingDataPath
+ * 
+ * @return path of training data
+ */
 string Command::getTrainingDataPath() const
 {
     return m_trainingDataPath;
 }
 
+/**
+ * Getter of m_testDataPath
+ * 
+ * @return path of test data
+ */
 string Command::getTestDataPath() const
 {
     return m_testDataPath;
 }
 
+/**
+ * Getter of m_testDataPathStatus
+ * 
+ * @return status of test data path
+ */
 bool Command::getTestDataPathStatus() const
 {
     return m_testDataPathStatus;
 }
 
+/**
+ * Getter of m_testDataPathValue
+ * 
+ * @return value of test data path
+ */
 unsigned int Command::getTestDataPathValue() const
 {
     return m_testDataPathValue;
 }
 
+/**
+ * Getter of m_k
+ * 
+ * @return value of k
+ */
 unsigned int Command::getK() const
 {
     return m_k;
 }
 
+/**
+ * Display help
+ */
 void Command::help()
 {
     cout << "help   Display information about commands" << endl;

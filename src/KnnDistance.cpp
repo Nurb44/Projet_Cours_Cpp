@@ -1,8 +1,19 @@
 #include "../inc/KnnDistance.h"
 
+/**
+ * Constructor KnnDistance
+ */
 KnnDistance::KnnDistance(): Knn()
 {}
 
+/**
+ * Prediction of knn
+ * 
+ * @param k number of knn
+ * @param dist vector of distance
+ * @param d training data
+ * @return tag array of knn
+ */
 unsigned int* KnnDistance::predictSingle(const unsigned int k, std::vector<double> dist, Data d)
 {
     // Declaration & initialisation of kppv and tag array
@@ -35,6 +46,13 @@ unsigned int* KnnDistance::predictSingle(const unsigned int k, std::vector<doubl
     return tag;
 }
 
+/**
+ * Calculation of distance
+ * 
+ * @param d training data
+ * @param f feacture vector to test
+ * @return vector of distance
+ */
 std::vector<double> KnnDistance::similarity(Data d, FeatureVector *f)
 {
     // Declaration of distance vector

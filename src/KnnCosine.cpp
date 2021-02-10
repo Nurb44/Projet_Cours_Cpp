@@ -1,8 +1,19 @@
 #include "../inc/KnnCosine.h"
 
+/**
+ * Constructor KnnCosine
+ */
 KnnCosine::KnnCosine(): Knn()
 {}
 
+/**
+ * Prediction of knn
+ * 
+ * @param k number of knn
+ * @param cos vector of cosine simularity
+ * @param d training data
+ * @return tag array of knn
+ */
 unsigned int* KnnCosine::predictSingle(const unsigned int k, std::vector<double> cos, Data d)
 {
     // Declaration & initialisation of kppv and tag array
@@ -35,6 +46,13 @@ unsigned int* KnnCosine::predictSingle(const unsigned int k, std::vector<double>
     return tag;
 }
 
+/**
+ * Calculation of cosine simularity
+ * 
+ * @param d training data
+ * @param f feacture vector to test
+ * @return vector of cosine simularity
+ */
 std::vector<double> KnnCosine::similarity(Data d, FeatureVector *f)
 {
     // Declaration of cosinus similarity vector

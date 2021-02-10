@@ -1,8 +1,20 @@
 #include "../inc/Knn.h"
 
+/**
+ * Constructor Knn
+ */
 Knn::Knn()
 {}
 
+/**
+ * Prediction of tag
+ * 
+ * @param d training data
+ * @param f feacture vector to test
+ * @param k number of knn
+ * @param info status of info to display information
+ * @return tag prediction
+ */
 unsigned int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool info)
 {
     // Calculation of similarity
