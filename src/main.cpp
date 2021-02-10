@@ -5,6 +5,7 @@
 #include "..\inc\Timer.h"
 #include "..\inc\Data.h"
 #include "..\inc\KnnCosine.h"
+#include "..\inc\KnnDistance.h"
 #include "..\inc\ClassificationReport.h"
 
 using namespace std;
@@ -57,22 +58,29 @@ int main()
                     {
                         // Declaration of predict tag
                         unsigned int predictTag;
+                        // Add test tag
+                        tag.push_back((*testData)[i]->getTag());
                         // Cosine calculation
                         if(cmd.getCosinus())
                         {
                             KnnCosine knnCos = KnnCosine();
                             predictTag = knnCos.predict(trainingData, (*testData)[i]->getFeature(), cmd.getK(), cmd.getInformation());
-                            tag.push_back((*testData)[i]->getTag());
                             predictTagCos.push_back(predictTag);
                             if(cmd.getInformation())
                             {
-                                cout << predictTag << " == " << (*testData)[i]->getTag() << " ? " << (predictTag == (*testData)[i]->getTag()) << endl;
+                                cout << predictTag << " == " << tag[i] << " ? " << (predictTag == tag[i]) << endl;
                             }
                         }
                         // Distance calculation
                         if(cmd.getDistance())
                         {
-                            
+                            KnnDistance knnDist = KnnDistance();
+                            predictTag = knnDist.predict(trainingData, (*testData)[i]->getFeature(), cmd.getK(), cmd.getInformation());
+                            predictTagDist.push_back(predictTag);
+                            if(cmd.getInformation())
+                            {
+                                cout << predictTag << " == " << tag[i] << " ? " << (predictTag == tag[i]) << endl;
+                            }
                         }
                     }
 
