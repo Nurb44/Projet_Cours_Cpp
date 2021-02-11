@@ -22,7 +22,7 @@ unsigned int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool i
 
     // k associated tag
     unsigned int *tag = predictSingle(k, val, d);
-    if(info)
+    if(false)
     {
         for(unsigned int i = 0; i < k; i++)
         {
@@ -50,6 +50,11 @@ unsigned int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool i
             nbTagTmp = nbTag[i + 1];
             tagMax = i + 1;
         }
+    }
+
+    if(info)
+    {
+        cout << (float(nbTag[tagMax]) / float(k)) * 100 << "% that it's a " << tagMax << endl;
     }
 
     return tagMax;
