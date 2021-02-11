@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Sample.h"
 #include <fstream>
+#include <algorithm>
+#include <random>
 
 class Data {
 public:
@@ -15,6 +17,7 @@ public:
     string getString() const;
     Sample *&operator[](int i) { return (m_data)[i]; }
     Data *split(unsigned int ratio);
+    void shuffle();
 
 private:
     std::vector<Sample *> m_data;
