@@ -64,6 +64,10 @@ int main()
                         if(cmd.getCosinus())
                         {
                             KnnCosine knnCos = KnnCosine();
+                            if(cmd.getInformation())
+                            {
+                                cout << "Cosinus" << endl;
+                            }
                             predictTag = knnCos.predict(trainingData, (*testData)[i]->getFeature(), cmd.getK(), cmd.getInformation());
                             predictTagCos.push_back(predictTag);
                             if(cmd.getInformation())
@@ -75,6 +79,10 @@ int main()
                         if(cmd.getDistance())
                         {
                             KnnDistance knnDist = KnnDistance();
+                            if(cmd.getInformation())
+                            {
+                                cout << "Distance" << endl;
+                            }
                             predictTag = knnDist.predict(trainingData, (*testData)[i]->getFeature(), cmd.getK(), cmd.getInformation());
                             predictTagDist.push_back(predictTag);
                             if(cmd.getInformation())
@@ -88,11 +96,13 @@ int main()
                     if(cmd.getCosinus())
                     {
                         ClassificationReport reportCos(tag, predictTagCos);
+                        cout << endl << "COSINUS" << endl;
                         cout << reportCos.getString() << endl;
                     }
                     if(cmd.getDistance())
                     {
                         ClassificationReport reportDist(tag, predictTagDist);
+                        cout << endl << "DISTANCE" << endl;
                         cout << reportDist.getString() << endl;
                     }
 
