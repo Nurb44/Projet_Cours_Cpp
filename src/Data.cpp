@@ -37,7 +37,6 @@ void Data::shuffle() {
     auto rng = default_random_engine{};
     std::shuffle(begin(m_data), end(m_data), rng);
 }
-
 /**
  * Split Data using ratio.
  * Remove part from obj1 to put it into obj2
@@ -48,6 +47,8 @@ void Data::shuffle() {
 Data *Data::split(unsigned int ratio) {
     if (ratio < 1 || ratio > 99)
         return nullptr;
+
+    shuffle();
 
     Data *n = new Data(*this);
 
