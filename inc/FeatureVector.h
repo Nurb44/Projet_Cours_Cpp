@@ -14,9 +14,8 @@ public:
     int getSize() const;
     double &operator[](int i) { return m_vector[i]; }
     double operator*(FeatureVector *B);
-
-private:
     double norme();
+private:
     double m_norme;
     std::vector<double> m_vector;
 };

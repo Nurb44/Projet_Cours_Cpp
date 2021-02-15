@@ -19,8 +19,10 @@ double FeatureVector::norme() {
     // norm = square root of the sum of squares
     double total = 0;
     for (const auto &value: m_vector) {
+        //cout << value << endl;
         total += pow(value, 2);
     }
+    m_norme = sqrt(total);
     return sqrt(total);
 }
 
