@@ -34,8 +34,8 @@ Data::~Data() {
  * Shuffle m_data
  */
 void Data::shuffle() {
-    auto rng = default_random_engine{};
-    std::shuffle(begin(m_data), end(m_data), rng);
+    srand(time(0));
+    random_shuffle(begin(m_data), end(m_data));
 }
 
 /**
@@ -48,8 +48,6 @@ void Data::shuffle() {
 Data *Data::split(unsigned int ratio) {
     if (ratio < 1 || ratio > 99)
         return nullptr;
-
-    shuffle();
 
     Data *n = new Data(*this);
 
