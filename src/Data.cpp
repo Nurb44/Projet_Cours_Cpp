@@ -39,6 +39,120 @@ void Data::shuffle() {
 }
 
 /**
+ * Prototype function to scale two Data together
+ *
+ * @param Data Data object pointer to scale with self
+ */
+void Data::scale(Data *data) {
+    double c, min, max;
+    unsigned int size = data->getNbSamples();
+
+    for (int i = 0; i < m_nb_features; i++) {
+        //cout<< "i = " << i<<endl;
+
+        min = (*m_data[0])[i];
+        max = (*m_data[0])[i];
+
+        for (const auto &sample: m_data) {
+            c = (*sample)[i];
+            if (c < min) min = c;
+            if (c > max) max = c;
+            //cout << "\tc = " << c << endl;
+        }
+
+        for (int j = 0; j < size; j++) {
+            c = (*(*data)[j])[i];
+            if (c < min) min = c;
+            if (c > max) max = c;
+            //cout << "\tc = " << c << endl;
+        }
+        //cout << "\tmin = " << min << endl;
+        //cout << "\tmax = " << max << endl;
+
+
+        for (const auto &sample: m_data) {
+            c = ((*sample)[i] - min) / (max - min);
+            //cout << "\tmodified c = " << c << endl;
+            (*sample)[i] = c;
+        }
+
+        for (int j = 0; j < size; j++) {
+            c = ((*(*data)[j])[i] - min) / (max - min);
+            //cout << "\tmodified c = " << c << endl;
+            (*(*data)[j])[i] = c;
+            //cout << "\tc = " << c << endl;
+        }
+
+    }
+
+    /*
+    // print content
+    int i = 0;
+    for (const auto &sample: m_data) {
+        cout << "sample : " << i << endl;
+        for (int j = 0; j<m_nb_features; j++) {
+            cout << (*(sample->getFeature()))[j] << endl;
+        }
+        i++;
+    }
+     */
+
+    for (const auto &sample: m_data) {
+        sample->getFeature()->norme();
+    }
+
+    for (int j = 0; j < size; j++) {
+        (*(*data)[j]).getFeature()->norme();
+    }
+}
+
+/**
+ * Prototype function to scale Data between 0 and 1
+ */
+void Data::scale() {
+    double c, min, max;
+    for (int i = 0; i < m_nb_features; i++) {
+        //cout<< "i = " << i<<endl;
+
+        min = (*m_data[0])[i];
+        max = (*m_data[0])[i];
+
+        for (const auto &sample: m_data) {
+            c = (*sample)[i];
+            if (c < min) min = c;
+            if (c > max) max = c;
+            //cout << "\tc = " << c << endl;
+        }
+        //cout << "\tmin = " << min << endl;
+        //cout << "\tmax = " << max << endl;
+
+
+        for (const auto &sample: m_data) {
+            c = ((*sample)[i] - min) / (max - min);
+            //cout << "\tmodified c = " << c << endl;
+            (*sample)[i] = c;
+        }
+
+    }
+
+    /*
+    // print content
+    int i = 0;
+    for (const auto &sample: m_data) {
+        cout << "sample : " << i << endl;
+        for (int j = 0; j<m_nb_features; j++) {
+            cout << (*(sample->getFeature()))[j] << endl;
+        }
+        i++;
+    }
+     */
+
+    for (const auto &sample: m_data) {
+        sample->getFeature()->norme();
+    }
+}
+
+/**
  * Split Data using ratio.
  * Remove part from obj1 to put it into obj2
  *

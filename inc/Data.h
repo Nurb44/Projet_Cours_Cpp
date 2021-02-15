@@ -19,6 +19,8 @@ public:
     Sample *&operator[](int i) { return (m_data)[i]; }
     Data *split(unsigned int ratio);
     void shuffle();
+    void scale();
+    void scale(Data* data);
 
 private:
     std::vector<Sample *> m_data;
