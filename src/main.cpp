@@ -101,6 +101,9 @@ int main()
                         }
                     }
 
+                    // Delete test data
+                    delete testData;
+
                     // Classification report
                     if(cmd.getCosinus())
                     {
