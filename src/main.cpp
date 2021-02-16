@@ -31,8 +31,14 @@ int main()
             // If value then split for test data
             if(cmd.getTestDataPathStatus())
             {
+                // Shuffle training data
+                trainingData.shuffle();
+                // Scale training data
+                trainingData.scale();
+                // Init test data
                 delete testData;
                 testData = trainingData.split(cmd.getTestDataPathValue());
+                // Update process status
                 process = true;
             }
             // If path then load for test data
@@ -40,6 +46,9 @@ int main()
             {
                 if(testData->load_from_svm(cmd.getTestDataPath()))
                 {
+                    // Scale training data and test data
+                    trainingData.scale(testData);
+                    // Update process status
                     process = true;
                 }
             }
