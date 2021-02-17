@@ -30,6 +30,7 @@ unsigned int Knn::predict(Data d, FeatureVector *f, const unsigned int k, bool i
         }
     }
 
+    // Amélioration: pondérer le choix en fonction du plus proche
     // Choose tag
     unsigned int nbTag[10];
     for(unsigned int i = 0; i < 10; i++)
